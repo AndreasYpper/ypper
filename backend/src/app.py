@@ -8,6 +8,14 @@ from flask_cors import CORS
 #config file with default configurations
 from config import *
 
+from resources.user import (
+    User,
+    UserLogin,
+    UserLogout,
+    UserRegister
+)
+from resources.machine import Machine, Machines
+
 app = Flask(__name__)
 
 #cors setup

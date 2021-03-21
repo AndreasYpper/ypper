@@ -6,15 +6,12 @@
     <div class="nav-item contact">
       <router-link :to="{ name: 'contact' }" class="link">Contact</router-link>
     </div>
-    <div class="nav-item about">
-      <router-link :to="{ name: 'about' }" class="link">About</router-link>
-    </div>
     <div class="nav-item projects">
       <router-link :to="{ name: 'projects' }" class="link">Projects</router-link>
     </div>
-    <div class="nav-item blog">
+    <!-- <div class="nav-item blog">
       <router-link :to="{ name: 'blog' }" class="link">Blog</router-link>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -44,16 +41,13 @@ export default {};
     color: #4c9192;
 }
 .home {
-  grid-column: 1 / 2;
+  grid-column: 2 / 3;
 }
 .contact {
-  grid-column: 3 / 4;
-}
-.about {
-  grid-column: 5 / 6;
+  grid-column: 4 / 5;
 }
 .projects {
-  grid-column: 7 / 8;
+  grid-column: 6 / 7;
 }
 .blog {
   grid-column: 9 / 10;
