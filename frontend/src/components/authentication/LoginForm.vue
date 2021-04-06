@@ -28,7 +28,8 @@
 </template>
 
 <script>
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
+import axios from 'axios'
 export default {
   setup() {
     const form = reactive({
@@ -36,12 +37,36 @@ export default {
       password: "",
     });
 
+    const auth_error = ref(false)
+
     function login() {
-      console.log("Login");
+      if(!form.email || !form.password) {
+        auth_error.value = true
+      }
+      else {
+        const request_login = {
+          email: form.email,
+          password: form.password
+        }
+        axios.post(process.env.VUE_APP_API_URL + "login", request_login, {
+          withCredentials: true
+        })
+        .then((response) => {
+          if(response.data.login) {
+            console.log('YES!!')
+          }
+        })
+        .catch((error) => {
+          if(error.response.status == 401){
+            auth_error.value = true
+          }
+        })
+      }
     }
 
     return {
       form,
+      auth_error,
       login,
     };
   },
@@ -80,8 +105,8 @@ export default {
 .input-email:focus {
   outline: none;
 }
-.username-input::placeholder {
-  font-size: 4vw;
+.input-email::placeholder {
+  font-size: 1vw;
   font-family: "Ubuntu", sans-serif;
 }
 .input-password {
@@ -98,14 +123,14 @@ export default {
 .input-password:focus {
   outline: none;
 }
-.username-password::placeholder {
-  font-size: 4vw;
+.input-password::placeholder {
+  font-size: 1vw;
   font-family: "Ubuntu", sans-serif;
 }
 .error {
   grid-row: 2;
   grid-column: 2 / 12;
-  color: red;
+  color: rgb(223, 0, 0);
   margin: 3px;
   font-size: 0.8vw;
   font-style: italic;

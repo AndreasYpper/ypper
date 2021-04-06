@@ -36,7 +36,10 @@ from db import db
 
 
 #api endpoints
-
+api.add_resource(UserRegister, '/api/register')
+api.add_resource(UserLogin, '/api/login')
+api.add_resource(UserLogout, '/api/logout')
+api.add_resource(User, '/api/profile')
 
 if __name__ == "__main__":
     if os.environ.get("APP_SETTINGS") == "config.DevelopmentConfig":
