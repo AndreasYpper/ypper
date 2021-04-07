@@ -5,6 +5,8 @@ import ContactView from '@/views/ypper/ContactView'
 import ProjectsView from '@/views/ypper/ProjectsView'
 import BlogView from '@/views/ypper/BlogView'
 
+import MachineHomeView from '@/views/machine_news/MachineHomeView'
+
 import AuthenticationView from '@/views/authentication/AuthenticationView'
 
 const routes = [
@@ -27,6 +29,11 @@ const routes = [
         path: '/blog',
         name: 'blog',
         component: BlogView
+    },
+    {
+        path: '/machine_news',
+        name: 'machine_news_home',
+        component: MachineHomeView
     },
     {
         path: '/auth',
