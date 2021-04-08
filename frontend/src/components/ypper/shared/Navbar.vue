@@ -7,7 +7,9 @@
       <router-link :to="{ name: 'contact' }" class="link">Contact</router-link>
     </div>
     <div class="nav-item projects">
-      <router-link :to="{ name: 'projects' }" class="link">Projects</router-link>
+      <router-link :to="{ name: 'projects' }" class="link"
+        >Projects</router-link
+      >
     </div>
     <!-- <div class="nav-item blog">
       <router-link :to="{ name: 'blog' }" class="link">Blog</router-link>
@@ -28,17 +30,18 @@ export default {};
   align-items: center;
 }
 .nav-item {
-    cursor: pointer;
-    padding: 10px;
-    border-radius: 15px;
-    font-weight: bold;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 15px;
 }
-.nav-item:hover{
-    background-color: #1c3334;
+.nav-item:hover {
+  background-color: #1c3334;
 }
 .link {
-    text-decoration: none;
-    color: #4c9192;
+  padding: 10px;
+  text-decoration: none;
+  color: #4c9192;
+  font-weight: bold;
 }
 .home {
   grid-column: 2 / 3;

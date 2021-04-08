@@ -18,8 +18,9 @@
       </label>
       <input
         class="form-field"
-        type="date"
-        placeholder="Name"
+        type="text"
+        placeholder="Warrenty of lasertube expires"
+        onfocus="(this.type='date')"
       />
       <div class="button-group">
         <button class="create-button">Create</button>
@@ -42,7 +43,7 @@ export default {
   grid-template-rows: auto;
 }
 .create-machine-form-container{
-  grid-column: 4 / 10;
+  grid-column: 1 / 13;
   grid-row: 1;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
