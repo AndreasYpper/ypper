@@ -4,12 +4,13 @@
     <div class="header">
         <h1>Create Machine</h1>
     </div>
-    <form class="create-machine-form">
+    <form class="create-machine-form" @submit.prevent="createMachine">
       <label class="form-label">
         Name:
       </label>
       <input
         class="form-field"
+        v-model="form.name"
         type="text"
         placeholder="Name"
       />
@@ -31,8 +32,35 @@
 </template>
 
 <script>
+import { reactive } from 'vue'
+// import axios from 'axios'
 export default {
+  setup() {
+    const form = reactive({
+      name: ''
+    })
 
+    const error = reactive({
+      name: ''
+    })
+
+    function validateForm() {
+      return true
+    }
+
+    function createMachine() {
+      if(validateForm()) {
+        console.log('Create machine ' + form.name)
+      }
+    }
+
+    return {
+      form,
+      error,
+      validateForm,
+      createMachine
+    }
+  }
 }
 </script>
 

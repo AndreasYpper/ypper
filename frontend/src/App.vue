@@ -1,11 +1,11 @@
 <template>
   <div class="app-container">
-    <div class="logo">
+    <div class="logo" v-if="site == 'ypper'">
       <router-link :to="{name:'home'}" class="link">
         <h1>Ypper.se</h1>
       </router-link>
     </div>
-    <div class="navbar">
+    <div class="navbar" v-if="site == 'ypper'">
       <Navbar />
     </div>
     <div class="content">
@@ -19,11 +19,21 @@
 
 <script>
 import Navbar from "@/components/ypper/shared/Navbar";
+import stateSite from '@/modules/site'
 export default {
   name: "App",
   components: {
     Navbar,
   },
+  setup() {
+    const { getSite } = stateSite
+    const site = getSite()
+
+    return {
+      getSite,
+      site
+    }
+  }
 };
 </script>
 

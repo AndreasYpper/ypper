@@ -2,14 +2,28 @@
   <div class="projects-container">
     <div class="nav-item">
       <router-link :to="{ name: 'machine_news_home' }" class="link">
-        <h1>Machine News</h1>
+        <img src="https://dl.dropboxusercontent.com/s/it0pkztvwiy99jk/maskinnytt.png?dl=0" alt="MaskinNytt" />
       </router-link>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import stateSite from '@/modules/site'
+import { onMounted } from 'vue'
+export default {
+  setup() {
+    const { setSite } = stateSite
+
+    onMounted(() => {
+      setSite('ypper')
+    })
+
+    return {
+      setSite
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -25,5 +39,8 @@ export default {};
   font-weight: bold;
   text-decoration: none;
   color: #4c9192;
+}
+.link img {
+  width: 10vw;
 }
 </style>

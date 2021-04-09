@@ -23,13 +23,19 @@
 
 <script>
 import CreateMachine from '@/components/machine_news/CreateMachine'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import stateSite from '@/modules/site'
 export default {
   components: {
     CreateMachine
   },
   setup() {
     const create_modal = ref(false)
+    const { setSite } = stateSite
+
+    onMounted(() => {
+      setSite('machine_news')
+    })
 
     function openCreateModal() {
       create_modal.value = true
