@@ -10,4 +10,4 @@ function getSite() {
   return site
 }
 
-export default { setSite, getSite}
+export default { setSite, getSite }

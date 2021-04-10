@@ -29,38 +29,47 @@
 
 <script>
 import { reactive, ref } from "vue";
-import axios from 'axios'
+import axios from "axios";
+import stateUser from "@/modules/user";
 export default {
   setup() {
+    const { setUser } = stateUser;
     const form = reactive({
       email: "",
       password: "",
     });
 
-    const auth_error = ref(false)
+    const auth_error = ref(false);
 
     function login() {
-      if(!form.email || !form.password) {
-        auth_error.value = true
-      }
-      else {
+      if (!form.email || !form.password) {
+        auth_error.value = true;
+      } else {
         const request_login = {
           email: form.email,
-          password: form.password
-        }
-        axios.post(process.env.VUE_APP_API_URL + "login", request_login, {
-          withCredentials: true
-        })
-        .then((response) => {
-          if(response.data.login) {
-            console.log('YES!!')
-          }
-        })
-        .catch((error) => {
-          if(error.response.status == 401){
-            auth_error.value = true
-          }
-        })
+          password: form.password,
+        };
+        axios
+          .post(process.env.VUE_APP_API_URL + "login", request_login, {
+            withCredentials: true,
+          })
+          .then((response) => {
+            if (response.data.login) {
+              setUser(
+                response.data.first_name,
+                response.data.last_name,
+                response.data.email,
+                response.data.phone,
+                false,
+                response.data.login
+              );
+            }
+          })
+          .catch((error) => {
+            if (error.response.status == 401) {
+              auth_error.value = true;
+            }
+          });
       }
     }
 
@@ -143,7 +152,7 @@ export default {
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto;
 }
-.login-button{
+.login-button {
   grid-row: 1;
   grid-column: 3 / 11;
   height: 2vw;

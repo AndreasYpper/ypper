@@ -9,6 +9,8 @@ import MachineHomeView from '@/views/machine_news/MachineHomeView'
 
 import AuthenticationView from '@/views/authentication/AuthenticationView'
 
+import ProfileView from '@/views/user/ProfileView'
+
 const routes = [
     {
         path: '/',
@@ -40,6 +42,11 @@ const routes = [
         name: 'authentication',
         component: AuthenticationView
     },
+    {
+        path: '/profile',
+        name: 'profile',
+        component: ProfileView
+    }
 ]
 
 const router = createRouter({

@@ -82,7 +82,7 @@ class User(Resource):
         "phone", type=str, required=True, help="Phonenumber is required."
     )
 
-    @jwt_required
+    @jwt_required()
     def get(self):
         user = UserModel.find_by_email(get_jwt_identity())
         if not user:
@@ -95,7 +95,7 @@ class User(Resource):
 
         return user.json()
 
-    @jwt_required
+    @jwt_required()
     def put(self):
         data = User.parser.parse_args()
         print(data)
