@@ -12,6 +12,8 @@
 <script>
 import Authentication from '@/components/authentication/Authentication'
 import stateUser from '@/modules/user'
+import stateSite from '@/modules/site'
+import { onMounted } from 'vue'
 export default {
   components: {
     Authentication
@@ -19,6 +21,12 @@ export default {
   setup() {
     const { getUser } = stateUser
     const user = getUser()
+
+    const { setSite } = stateSite
+
+    onMounted(() => {
+      setSite('ypper')
+    })
 
     return {
       getUser,

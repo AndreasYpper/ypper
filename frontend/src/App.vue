@@ -1,11 +1,11 @@
 <template>
   <div class="app-container">
-    <div class="logo" v-if="site == 'ypper'">
+    <div class="logo-ypper" v-if="site == 'ypper'">
       <router-link :to="{name:'home'}" class="link">
         <h1>Ypper.se</h1>
       </router-link>
     </div>
-    <div class="navbar" v-if="site == 'ypper'">
+    <div class="navbar-ypper" v-if="site == 'ypper'">
       <Navbar />
     </div>
     <div class="content">
@@ -49,27 +49,27 @@ export default {
 }
 .app-container {
   display: grid;
-  min-height: 98vh;
+  min-height: 100vh;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto 1fr auto;
   background-color: #2f4454;
   color: aliceblue;
 }
-.logo {
+.logo-ypper {
   margin-top: 20px;
   cursor: pointer;
   grid-row: 1;
   grid-column: 2 / 5;
   text-decoration: none;
 }
-.logo .link{
+.logo-ypper .link{
   text-decoration: none;
 }
-.logo h1 {
+.logo-ypper h1 {
   margin: 0;
   color: #baf5f8;
 }
-.navbar {
+.navbar-ypper {
   margin-top: 20px;
   grid-column: 5 / 12;
   grid-row: 1;
