@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 
-const site = ref('')
+const site = ref('ypper')
 
 function setSite(s) {
   site.value = s

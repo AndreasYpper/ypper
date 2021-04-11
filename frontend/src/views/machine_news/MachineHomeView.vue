@@ -1,55 +1,19 @@
 <template>
   <div class="machine-news-container">
-    <div class="header">
-          <h1>Machine News</h1>
-    </div>
-    <button @click="openCreateModal()">Create machine</button>
-
-    <!-- Create machine modal -->
-    <div class="create-machine-modal" v-if="create_modal">
-      <div class="modal-backdrop" @click="closeCreateModal()" />
-      <div class="modal-dialog">
-        <div class="modal-header">
-          <span class="modal-close" @click="closeCreateModal()"> &times; </span>
-        </div>
-        <div class="modal-body">
-          <CreateMachine />
-        </div>
-      </div>
-    </div>
-
+    <h1>Welcome to machine news!</h1>
   </div>
 </template>
 
 <script>
-import CreateMachine from '@/components/machine_news/CreateMachine'
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import stateSite from '@/modules/site'
 export default {
-  components: {
-    CreateMachine
-  },
   setup() {
-    const create_modal = ref(false)
     const { setSite } = stateSite
 
     onMounted(() => {
       setSite('machine_news')
     })
-
-    function openCreateModal() {
-      create_modal.value = true
-    }
-
-    function closeCreateModal() {
-      create_modal.value = false
-    }
-
-    return {
-      create_modal,
-      openCreateModal,
-      closeCreateModal
-    }
   }
 }
 </script>
