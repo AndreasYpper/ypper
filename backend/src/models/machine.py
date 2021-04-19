@@ -1,4 +1,5 @@
 from db import db
+from sqlalchemy import Date
 
 
 class MachineModel(db.Model):
@@ -6,12 +7,30 @@ class MachineModel(db.Model):
 
     machine_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(20))
+    last_semi_service = db.Column(Date)
+    last_full_service = db.Column(Date)
+    network_address = db.Column(db.String(40))
 
-    def __init__(self, name):
+    machine_status_id = db.Column(
+        db.Integer, db.ForeignKey("machine_statuses.machine_status_id")
+    )
+
+    def __init__(self, name, last_semi_service, last_full_service, network_address, machine_status_id):
         self.name = name
+        self.last_semi_service = last_semi_service
+        self.last_full_service = last_full_service
+        self.network_address = network_address
+        self.machine_status_id = machine_status_id
 
     def json(self):
-        return {"machine_id": self.machine_id, "name": self.name}
+        return {
+            "machine_id": self.machine_id,
+            "name": self.name,
+            "last_semi_sevice": str(self.last_semi_service),
+            'last_full_service': str(self.last_full_service),
+            'network_address': self.network_address,
+            'machine_status_id': self.machine_status_id
+        }
 
     @classmethod
     def find_by_id(cls, _id):

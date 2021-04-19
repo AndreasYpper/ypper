@@ -12,13 +12,16 @@
           type="text"
           placeholder="Name"
         />
-        <label class="form-label"> Warrenty of lasertube expires: </label>
+        <div class="error" v-if="error.name!=''">
+          <p>{{ error.name }}</p>
+        </div>
+        <!-- <label class="form-label"> Warrenty of lasertube expires: </label>
         <input
           class="form-field"
           type="text"
           placeholder="Warrenty of lasertube expires"
           onfocus="(this.type='date')"
-        />
+        /> -->
         <div class="button-group">
           <button class="create-button">Create</button>
         </div>
@@ -28,10 +31,11 @@
 </template>
 
 <script>
-import { reactive } from "vue";
-// import axios from 'axios'
+import { reactive, getCurrentInstance } from "vue";
+import axios from 'axios'
 export default {
   setup() {
+    const instance = getCurrentInstance()
     const form = reactive({
       name: "",
     });
@@ -41,12 +45,23 @@ export default {
     });
 
     function validateForm() {
-      return true;
+      if(form.name.length > 0) {
+        return true
+      }
+      else{
+        error.name = "Name field can't be left blank."
+        return false
+      }
     }
 
     function createMachine() {
       if (validateForm()) {
-        console.log("Create machine " + form.name);
+        axios.post(process.env.VUE_APP_API_URL + 'machine', form)
+          .then((response) => {
+            if(response.data.name == form.name) {
+              instance.parent.setupState.create_modal = false
+            }
+          })
       }
     }
 
@@ -129,5 +144,11 @@ export default {
   border: none;
   background-color: #1ffaa6;
   cursor: pointer;
+}
+.error{
+  grid-column: 2 / 12;
+  color: #ff3b3f;
+  font-style: italic;
+  font-size: 1vw;
 }
 </style>

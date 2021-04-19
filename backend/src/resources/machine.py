@@ -6,6 +6,21 @@ from sqlalchemy.exc import SQLAlchemyError
 class Machine(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument("name", type=str, required=True, help="Name is required.")
+    parser.add_argument(
+        "last_semi_service", required=True, help="This field is required."
+    )
+    parser.add_argument(
+        "last_full_service", type=str, required=True, help="This field is required."
+    )
+    parser.add_argument(
+        "last_full_service", type=str, required=True, help="This field is required."
+    )
+    parser.add_argument(
+        "network_address", type=str, required=False
+    )
+    parser.add_argument(
+        "machine_status_id", type=int, required=True, help="This field is required."
+    )
 
     def get(self, _id):
         machine = MachineModel.find_by_id(_id)
@@ -17,6 +32,7 @@ class Machine(Resource):
 
     def post(self):
         data = Machine.parser.parse_args()
+        print(data)
 
         machine = MachineModel(**data)
         try:
@@ -26,7 +42,7 @@ class Machine(Resource):
             error = str(e.__dict__["orig"])
             return error, 500
 
-        return {machine.json()}
+        return machine.json()
 
 
 class Machines(Resource):

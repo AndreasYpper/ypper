@@ -15,6 +15,7 @@ from resources.user import (
     UserRegister
 )
 from resources.machine import Machine, Machines
+from resources.machine_status import MachineStatus
 
 app = Flask(__name__)
 
@@ -40,6 +41,9 @@ api.add_resource(UserRegister, '/api/register')
 api.add_resource(UserLogin, '/api/login')
 api.add_resource(UserLogout, '/api/logout')
 api.add_resource(User, '/api/profile')
+
+api.add_resource(Machine, '/api/machine')
+api.add_resource(Machines, '/api/machines')
 
 if __name__ == "__main__":
     if os.environ.get("APP_SETTINGS") == "config.DevelopmentConfig":
