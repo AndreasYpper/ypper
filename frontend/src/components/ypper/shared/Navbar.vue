@@ -1,6 +1,15 @@
 <template>
   <div class="navbar-container">
     <div class="nav-item home">
+      <p class="link" @click="navigate('home')">Home</p>
+    </div>
+    <div class="nav-item contact">
+      <p class="link" @click="navigate('contact')">Contact</p>
+    </div>
+    <div class="nav-item projects">
+      <p class="link" @click="navigate('projects')">Projects</p>
+    </div>
+    <!-- <div class="nav-item home">
       <router-link :to="{ name: 'home' }" class="link">Home</router-link>
     </div>
     <div class="nav-item contact">
@@ -10,7 +19,7 @@
       <router-link :to="{ name: 'projects' }" class="link"
         >Projects</router-link
       >
-    </div>
+    </div> -->
     <!-- <div class="nav-item blog">
       <router-link :to="{ name: 'blog' }" class="link">Blog</router-link>
     </div> -->
@@ -18,7 +27,21 @@
 </template>
 
 <script>
-export default {};
+import stateNavigation from "@/modules/ypperNavigation";
+export default {
+  setup() {
+    const { setNav } = stateNavigation;
+
+    function navigate(nav) {
+      setNav(nav);
+    }
+
+    return {
+      setNav,
+      navigate,
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -30,7 +53,7 @@ export default {};
   align-items: center;
 }
 .nav-item {
-  padding: 10px;
+  padding: 0 10px 0 10px;
   cursor: pointer;
   border-radius: 15px;
 }
@@ -38,7 +61,6 @@ export default {};
   background-color: #1c3334;
 }
 .link {
-  padding: 10px;
   text-decoration: none;
   color: #4c9192;
   font-weight: bold;
