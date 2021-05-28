@@ -10,6 +10,7 @@
     </div>
 
     <!-- Create machine modal -->
+    <transition name="create-machine" appear>
     <div class="create-machine-modal" v-if="create_modal">
       <div class="modal-backdrop" @click="closeCreateModal()" />
       <div class="modal-dialog">
@@ -21,6 +22,7 @@
         </div>
       </div>
     </div>
+    </transition>
   </div>
 </template>
 
@@ -93,6 +95,24 @@ export default {
 }
 .create-machine {
   grid-column: 5 / 7;
+}
+.create-machine-enter-from {
+  opacity: 0;
+}
+.create-machine-enter-to {
+  opacity: 1;
+}
+.create-machine-enter-active {
+  transition: all 0.5s ease;
+}
+.create-machine-leave-from {
+  opacity: 1;
+}
+.create-machine-leave-to {
+  opacity: 0;
+}
+.create-machine-leave-active {
+  transition: all 0.25s ease;
 }
 .create-machine-modal {
   position: fixed; /* Stay in place */

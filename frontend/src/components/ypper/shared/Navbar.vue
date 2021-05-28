@@ -28,9 +28,14 @@
 
 <script>
 import stateNavigation from "@/modules/ypperNavigation";
+import { onMounted } from 'vue'
 export default {
   setup() {
     const { setNav } = stateNavigation;
+
+    onMounted(() => {
+      navigate('home')
+    })
 
     function navigate(nav) {
       setNav(nav);

@@ -15,13 +15,41 @@
         <div class="error" v-if="error.name!=''">
           <p>{{ error.name }}</p>
         </div>
-        <!-- <label class="form-label"> Warrenty of lasertube expires: </label>
+        <label class="form-label"> Last semi service: </label>
+        <input
+          class="form-field"
+          v-model="form.last_semi_service"
+          type="date"
+        />
+        <div class="error" v-if="error.last_semi_service!=''">
+          <p>{{ error.last_semi_service }}</p>
+        </div>
+        <label class="form-label"> Last full service: </label>
+        <input
+          class="form-field"
+          v-model="form.last_full_service"
+          type="date"
+        />
+        <div class="error" v-if="error.last_full_service!=''">
+          <p>{{ error.last_full_service }}</p>
+        </div>
+        <label class="form-label"> Network address: </label>
+        <input
+          class="form-field"
+          v-model="form.network_address"
+          type="text"
+          placeholder="eg: 192.168.1.1"
+        />
+        <div class="error" v-if="error.network_address!=''">
+          <p>{{ error.network_address }}</p>
+        </div>
+        <label class="form-label"> Warrenty of lasertube expires: </label>
         <input
           class="form-field"
           type="text"
           placeholder="Warrenty of lasertube expires"
           onfocus="(this.type='date')"
-        /> -->
+        />
         <div class="button-group">
           <button class="create-button">Create</button>
         </div>
@@ -38,10 +66,20 @@ export default {
     const instance = getCurrentInstance()
     const form = reactive({
       name: "",
+      last_semi_service: null,
+      last_full_service: null,
+      network_address: '',
+      lasertube_warranty: null,
+      general_warranty: null
     });
 
     const error = reactive({
       name: "",
+      last_semi_service: "",
+      last_full_service: "",
+      network_address: '',
+      lasertube_warranty: "",
+      general_warranty: ""
     });
 
     function validateForm() {
@@ -126,7 +164,8 @@ export default {
   grid-column: 1 / 13;
   text-align: left;
   margin: 10px;
-  color: #a9a9a9;
+  /* color: #a9a9a9; */
+  color: black;
 }
 .button-group {
   grid-column: 2 / 12;
