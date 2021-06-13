@@ -33,7 +33,8 @@ class DevelopmentConfig(Config):
     CSRF_ENABLED = True
     SECRET_KEY = environ.get('SECRET_KEY')
     SQLALCHEMY_DATABASE_URI = environ.get('DATABASE_URI')
-    JWT_COOKIE_SECURE = False
+    JWT_COOKIE_SAMESITE = "None"
+    JWT_COOKIE_SECURE = True
 
 
 class TestingConfig(Config):

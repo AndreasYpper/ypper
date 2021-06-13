@@ -6,12 +6,15 @@
       >
     </div>
     <div class="nav-item create-machine">
-      <button class="link" @click="openCreateModal()">Create Machine</button>
+      <button class="link" @click="openCreateModal('machine')">Create Machine</button>
+    </div>
+    <div class="nav-item create-status">
+      <button class="link" @click="openCreateModal('status')">Create Status</button>
     </div>
 
     <!-- Create machine modal -->
-    <transition name="create-machine" appear>
-    <div class="create-machine-modal" v-if="create_modal">
+    <transition name="create-modal" appear>
+    <div class="create-modal" v-if="create_machine">
       <div class="modal-backdrop" @click="closeCreateModal()" />
       <div class="modal-dialog">
         <div class="modal-header">
@@ -23,35 +26,60 @@
       </div>
     </div>
     </transition>
+    <transition name="create-modal" appear>
+    <div class="create-modal" v-if="create_status">
+      <div class="modal-backdrop" @click="closeCreateModal()" />
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <span class="modal-close" @click="closeCreateModal()"> &times; </span>
+        </div>
+        <div class="modal-body">
+          <CreateStatus />
+        </div>
+      </div>
+    </div>
+    </transition>
   </div>
 </template>
 
 <script>
 import CreateMachine from '@/components/machine_news/CreateMachine'
+import CreateStatus from '@/components/machine_news/CreateStatus'
 import { ref, onMounted } from 'vue'
 import stateSite from '@/modules/site'
 export default {
   components: {
-    CreateMachine
+    CreateMachine,
+    CreateStatus
   },
   setup() {
-    const create_modal = ref(false)
+    const create_machine = ref(false)
+    const create_status = ref(false)
     const { setSite } = stateSite
 
     onMounted(() => {
       setSite('machine_news')
     })
 
-    function openCreateModal() {
-      create_modal.value = true
+    function openCreateModal(modal) {
+      if(modal === 'machine') {
+        create_machine.value = true
+        create_status.value = false
+      }
+      else if(modal === 'status') {
+        create_machine.value = false
+        create_status.value = true
+      }
     }
 
     function closeCreateModal() {
-      create_modal.value = false
+      create_machine.value = false
+      create_status.value = false
     }
 
     return {
-      create_modal,
+      create_machine,
+      create_status,
       openCreateModal,
       closeCreateModal
     }
@@ -96,25 +124,28 @@ export default {
 .create-machine {
   grid-column: 5 / 7;
 }
-.create-machine-enter-from {
+.create-status {
+  grid-column: 8 / 10;
+}
+.create-modal-enter-from {
   opacity: 0;
 }
-.create-machine-enter-to {
+.create-modal-enter-to {
   opacity: 1;
 }
-.create-machine-enter-active {
+.create-modal-enter-active {
   transition: all 0.5s ease;
 }
-.create-machine-leave-from {
+.create-modal-leave-from {
   opacity: 1;
 }
-.create-machine-leave-to {
+.create-modal-leave-to {
   opacity: 0;
 }
-.create-machine-leave-active {
+.create-modal-leave-active {
   transition: all 0.25s ease;
 }
-.create-machine-modal {
+.create-modal {
   position: fixed; /* Stay in place */
   top: 0;
   right: 0;

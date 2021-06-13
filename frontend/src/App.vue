@@ -22,7 +22,7 @@
           <h1>Machine News</h1>
         </router-link>
       </div>
-      <div class="navbar-machine-news">
+      <div class="navbar-machine-news" v-if="user.first_name">
         <MachineNewsNavbar />
       </div>
       <div class="content">
@@ -39,6 +39,7 @@
 import Navbar from "@/components/ypper/shared/Navbar";
 import MachineNewsNavbar from '@/components/machine_news/shared/MachineNewsNavbar'
 import stateSite from "@/modules/site";
+import stateUser from '@/modules/user'
 export default {
   name: "App",
   components: {
@@ -48,10 +49,14 @@ export default {
   setup() {
     const { getSite } = stateSite;
     const site = getSite();
+    const { getUser } = stateUser
+    const user = getUser()
 
     return {
       getSite,
       site,
+      getUser,
+      user
     };
   },
 };

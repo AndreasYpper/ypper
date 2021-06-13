@@ -129,7 +129,6 @@ class UserLogin(Resource):
         user = UserModel.find_by_email(data["email"])
 
         if user and check_password_hash(user.password, data["password"]):
-            print(user.email)
             access_token = create_access_token(identity=user.email)
             refresh_token = create_refresh_token(identity=user.email)
             if user.admin:
@@ -157,6 +156,7 @@ class UserLogin(Resource):
             set_access_cookies(resp, access_token)
             set_refresh_cookies(resp, refresh_token)
             resp.status_code = 200
+            print(resp)
             return resp
 
         return {"message": "Invalid credentials"}, 401

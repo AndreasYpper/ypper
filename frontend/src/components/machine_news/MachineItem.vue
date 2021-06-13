@@ -29,7 +29,7 @@ export default {
   grid-template-rows: auto;
 }
 .card{
-  grid-column: 2 / 12;
+  grid-column: 1 / 13;
   grid-row: 1;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -51,7 +51,7 @@ export default {
   padding: 5px;
 }
 .card-image img {
-  width: 8vw;
+  width: 5vw;
 }
 .card-body{
   grid-column: 2 / 12;

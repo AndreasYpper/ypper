@@ -1,11 +1,11 @@
 <template>
   <div class="machine-news-container">
-    <div
-      class="machines"
-      v-for="machine in machines.machines"
-      :key="machine.machine_id"
-    >
-      <div class="machine">
+    <div class="machines">
+      <div
+        class="machine"
+        v-for="machine in machines.machines"
+        :key="machine.machine_id"
+      >
         <MachineItem :machine="machine" />
       </div>
     </div>
@@ -16,10 +16,10 @@
 import axios from "axios";
 import { onMounted, ref } from "vue";
 import stateSite from "@/modules/site";
-import MachineItem from '@/components/machine_news/MachineItem'
+import MachineItem from "@/components/machine_news/MachineItem";
 export default {
   components: {
-    MachineItem
+    MachineItem,
   },
   setup() {
     const { setSite } = stateSite;
@@ -52,9 +52,14 @@ export default {
   grid-template-columns: repeat(12, 1fr);
 }
 .machines {
+  grid-column: 1 / 13;
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 .machine {
-  width: 13vw;
+  width: 7vw;
+  margin: 10px;
 }
 </style>

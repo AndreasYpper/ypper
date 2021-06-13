@@ -28,3 +28,12 @@ class MachineStatus(Resource):
             return error, 500
 
         return machine.json()
+
+
+class MachineStatuses(Resource):
+    def get(self):
+        return {
+            "machine_statuses": [
+                machine_status.json() for machine_status in MachineStatusModel.query.all()
+            ]
+        }

@@ -12,7 +12,7 @@
           type="text"
           placeholder="Name"
         />
-        <div class="error" v-if="error.name!=''">
+        <div class="error" v-if="error.name != ''">
           <p>{{ error.name }}</p>
         </div>
         <label class="form-label"> Last semi service: </label>
@@ -21,7 +21,7 @@
           v-model="form.last_semi_service"
           type="date"
         />
-        <div class="error" v-if="error.last_semi_service!=''">
+        <div class="error" v-if="error.last_semi_service != ''">
           <p>{{ error.last_semi_service }}</p>
         </div>
         <label class="form-label"> Last full service: </label>
@@ -30,7 +30,7 @@
           v-model="form.last_full_service"
           type="date"
         />
-        <div class="error" v-if="error.last_full_service!=''">
+        <div class="error" v-if="error.last_full_service != ''">
           <p>{{ error.last_full_service }}</p>
         </div>
         <label class="form-label"> Network address: </label>
@@ -40,9 +40,20 @@
           type="text"
           placeholder="eg: 192.168.1.1"
         />
-        <div class="error" v-if="error.network_address!=''">
+        <div class="error" v-if="error.network_address != ''">
           <p>{{ error.network_address }}</p>
         </div>
+        <label class="form-label">Status of machine: </label>
+        <select class="form-field" v-model="form.machine_status_id">
+          <option
+            class="option-field"
+            v-for="status in statuses.statuses"
+            :key="status.machine_status_id"
+            :value="status.machine_status_id"
+          >
+            {{ status.title }}
+          </option>
+        </select>
         <label class="form-label"> Warrenty of lasertube expires: </label>
         <input
           class="form-field"
@@ -59,53 +70,70 @@
 </template>
 
 <script>
-import { reactive, getCurrentInstance } from "vue";
-import axios from 'axios'
+import { reactive, getCurrentInstance, onMounted } from "vue";
+import axios from "axios";
 export default {
   setup() {
-    const instance = getCurrentInstance()
+    onMounted(() => {
+      getStatuses();
+    });
+    const instance = getCurrentInstance();
+    const statuses = reactive({
+      statuses: {},
+    });
     const form = reactive({
       name: "",
       last_semi_service: null,
       last_full_service: null,
-      network_address: '',
+      network_address: "",
+      machine_status_id: null,
       lasertube_warranty: null,
-      general_warranty: null
+      general_warranty: null,
     });
 
     const error = reactive({
       name: "",
       last_semi_service: "",
       last_full_service: "",
-      network_address: '',
+      network_address: "",
       lasertube_warranty: "",
-      general_warranty: ""
+      general_warranty: "",
     });
 
+    function getStatuses() {
+      axios
+        .get(process.env.VUE_APP_API_URL + "machine_statuses")
+        .then((response) => {
+          statuses.statuses = response.data.machine_statuses;
+        });
+    }
+
     function validateForm() {
-      if(form.name.length > 0) {
-        return true
-      }
-      else{
-        error.name = "Name field can't be left blank."
-        return false
+      if (form.name.length > 0) {
+        return true;
+      } else {
+        error.name = "Name field can't be left blank.";
+        return false;
       }
     }
 
     function createMachine() {
       if (validateForm()) {
-        axios.post(process.env.VUE_APP_API_URL + 'machine', form)
+        axios
+          .post(process.env.VUE_APP_API_URL + "machine", form)
           .then((response) => {
-            if(response.data.name == form.name) {
-              instance.parent.setupState.create_modal = false
+            if (response.data.name == form.name) {
+              console.log(instance.parent.create_machine);
             }
-          })
+          });
       }
     }
 
     return {
+      statuses,
       form,
       error,
+      getStatuses,
       validateForm,
       createMachine,
     };
@@ -184,7 +212,7 @@ export default {
   background-color: #1ffaa6;
   cursor: pointer;
 }
-.error{
+.error {
   grid-column: 2 / 12;
   color: #ff3b3f;
   font-style: italic;

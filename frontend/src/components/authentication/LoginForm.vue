@@ -64,6 +64,7 @@ export default {
                 response.data.login
               );
             }
+            window.location = '/profile'
           })
           .catch((error) => {
             if (error.response.status == 401) {

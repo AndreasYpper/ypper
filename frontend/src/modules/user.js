@@ -21,6 +21,17 @@ function setUser(fname, lname, email, phone, admin, authenticated) {
     user.authentication_failed = false
 }
 
+function check_cookie_name(name) {
+    var match = document.cookie.match(
+        new RegExp("(^| )" + name + "=([^;]+)")
+    );
+    if (match) {
+        return match[2];
+    } else {
+        //  console.log('--something went wrong---');
+    }
+}
+
 function logout() {
     user.first_name = ''
     user.last_name = ''
@@ -41,7 +52,14 @@ function getUser() {
     }
 
     const fetchUser = () => {
-        axios.get(process.env.VUE_APP_API_URL + 'profile', { withCredentials: true })
+        var cookie = check_cookie_name("csrf_access_token");
+        axios.get(process.env.VUE_APP_API_URL + 'profile',
+            {
+                headers: {
+                    "X-CSRF-TOKEN": cookie, "Content-Type": "application/json"
+                },
+                withCredentials: true
+            })
             .then((response) => {
                 setUser(response.data.first_name, response.data.last_name, response.data.email, response.data.phone, false, true)
             })
