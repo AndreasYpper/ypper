@@ -15,7 +15,14 @@ class MachineModel(db.Model):
         db.Integer, db.ForeignKey("machine_statuses.machine_status_id")
     )
 
-    def __init__(self, name, last_semi_service, last_full_service, network_address, machine_status_id):
+    def __init__(
+        self,
+        name,
+        last_semi_service,
+        last_full_service,
+        network_address,
+        machine_status_id,
+    ):
         self.name = name
         self.last_semi_service = last_semi_service
         self.last_full_service = last_full_service
@@ -26,10 +33,10 @@ class MachineModel(db.Model):
         return {
             "machine_id": self.machine_id,
             "name": self.name,
-            "last_semi_sevice": str(self.last_semi_service),
-            'last_full_service': str(self.last_full_service),
-            'network_address': self.network_address,
-            'machine_status_id': self.machine_status_id
+            "last_semi_service": str(self.last_semi_service),
+            "last_full_service": str(self.last_full_service),
+            "network_address": self.network_address,
+            "machine_status_id": self.machine_status_id,
         }
 
     @classmethod

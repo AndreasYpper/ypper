@@ -42,10 +42,10 @@ api.add_resource(UserLogin, '/api/login')
 api.add_resource(UserLogout, '/api/logout')
 api.add_resource(User, '/api/profile')
 
-api.add_resource(Machine, '/api/machine')
+api.add_resource(Machine, '/api/machine/<int:_id>')
 api.add_resource(Machines, '/api/machines')
 
-api.add_resource(MachineStatus, '/api/machine_status')
+api.add_resource(MachineStatus, '/api/machine_status/<int:_id>')
 api.add_resource(MachineStatuses, '/api/machine_statuses')
 
 if __name__ == "__main__":
