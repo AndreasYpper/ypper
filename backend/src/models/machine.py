@@ -1,5 +1,6 @@
 from db import db
 from sqlalchemy import Date
+from models.machine_post import MachinePostModel
 
 
 class MachineModel(db.Model):
@@ -14,6 +15,8 @@ class MachineModel(db.Model):
     machine_status_id = db.Column(
         db.Integer, db.ForeignKey("machine_statuses.machine_status_id")
     )
+
+    machine_posts = db.relationship("MachinePostModel", backref="machines", lazy=True)
 
     def __init__(
         self,
@@ -37,6 +40,12 @@ class MachineModel(db.Model):
             "last_full_service": str(self.last_full_service),
             "network_address": self.network_address,
             "machine_status_id": self.machine_status_id,
+            "machine_posts": [
+                post.json()
+                for post in MachinePostModel.query.filter_by(
+                    machine_id=self.machine_id
+                ).all()
+            ],
         }
 
     @classmethod

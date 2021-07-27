@@ -15,8 +15,20 @@ class MachineStatus(Resource):
 
         return {"message": "Machine not found"}, 400
 
+
+class MachineStatuses(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument("title", type=str, required=True, help="Title is required.")
+
+    def get(self):
+        return {
+            "machine_statuses": [
+                machine_status.json() for machine_status in MachineStatusModel.query.all()
+            ]
+        }
+    
     def post(self):
-        data = MachineStatus.parser.parse_args()
+        data = MachineStatuses.parser.parse_args()
         print(data)
 
         machine = MachineStatusModel(**data)
@@ -28,12 +40,3 @@ class MachineStatus(Resource):
             return error, 500
 
         return machine.json()
-
-
-class MachineStatuses(Resource):
-    def get(self):
-        return {
-            "machine_statuses": [
-                machine_status.json() for machine_status in MachineStatusModel.query.all()
-            ]
-        }

@@ -164,7 +164,7 @@ export default {
 .form-field::placeholder {
   font-family: "Ubuntu", sans-serif;
   font-size: 1vw;
-  color: caebf2;
+  color: #516266;
 }
 .form-label {
   grid-column: 1 / 13;

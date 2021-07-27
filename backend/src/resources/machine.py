@@ -30,9 +30,31 @@ class Machine(Resource):
 
         return {"message": "Machine not found"}, 400
 
+
+class Machines(Resource):
+    parser = reqparse.RequestParser()
+    parser.add_argument("name", type=str, required=True, help="Name is required.")
+    parser.add_argument(
+        "last_semi_service", required=True, help="This field is required."
+    )
+    parser.add_argument(
+        "last_full_service", type=str, required=True, help="This field is required."
+    )
+    parser.add_argument(
+        "last_full_service", type=str, required=True, help="This field is required."
+    )
+    parser.add_argument(
+        "network_address", type=str, required=False
+    )
+    parser.add_argument(
+        "machine_status_id", type=int, required=True, help="This field is required."
+    )
+
+    def get(self):
+        return {"machines": [machine.json() for machine in MachineModel.query.all()]}
+
     def post(self):
-        data = Machine.parser.parse_args()
-        print(data)
+        data = Machines.parser.parse_args()
 
         machine = MachineModel(**data)
         try:
@@ -43,8 +65,3 @@ class Machine(Resource):
             return error, 500
 
         return machine.json()
-
-
-class Machines(Resource):
-    def get(self):
-        return {"machines": [machine.json() for machine in MachineModel.query.all()]}

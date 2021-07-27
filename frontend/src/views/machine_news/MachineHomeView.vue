@@ -17,7 +17,12 @@
             <span class="modal-close" @click="closeDetails()"> &times; </span>
           </div>
           <div class="modal-body">
-            <MachineDetails :machine="machine" />
+            <div class="details">
+              <MachineDetails :machine="machine" />
+            </div>
+            <div class="posts">
+              <MachineDetailsPosts :machine="machine" />
+            </div>
           </div>
         </div>
       </div>
@@ -32,10 +37,12 @@ import stateSite from "@/modules/site";
 import stateMachine from "@/modules/machine";
 import MachineItem from "@/components/machine_news/MachineItem";
 import MachineDetails from "@/components/machine_news/MachineDetails";
+import MachineDetailsPosts from '@/components/machine_news/MachineDetailsPosts'
 export default {
   components: {
     MachineItem,
     MachineDetails,
+    MachineDetailsPosts
   },
   setup() {
     const { setSite } = stateSite;
@@ -56,7 +63,7 @@ export default {
 
     function closeDetails() {
       show_details.value = false;
-      resetMachine()
+      resetMachine();
     }
 
     function fetchMachine(machine_id) {
@@ -159,7 +166,7 @@ export default {
 .modal-dialog {
   position: relative;
   z-index: 2;
-  grid-column: 5 / 9;
+  grid-column: 2 / 12;
   grid-row: 1;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -177,12 +184,23 @@ export default {
 }
 .modal-close {
   cursor: pointer;
-  margin: 0 3px 0 10px;
-  font-size: 1.5vw;
-  grid-column: 12;
+  margin: 0 20px 0 20px;
+  font-size: 2vw;
+  grid-column: 13;
 }
 .modal-body {
   grid-column: 1 / 13;
   grid-row: 2;
+  display: grid;
+  grid-template-columns: repeat(12m 1fr);
+  grid-template-rows: auto;
+}
+.details {
+  grid-column: 1 / 6;
+  grid-row: 1;
+}
+.posts {
+  grid-column: 6 / 13;
+  grid-row: 1;
 }
 </style>

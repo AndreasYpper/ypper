@@ -49,7 +49,7 @@ export default {
     function createStatus() {
       if (validateForm()) {
         axios
-          .post(process.env.VUE_APP_API_URL + "machine_status", form)
+          .post(process.env.VUE_APP_API_URL + "machine_statuses", form)
           .then((response) => {
             if (response.data.title == form.title) {
               instance.parent.setupState.create_status = false;

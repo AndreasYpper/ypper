@@ -8,7 +8,8 @@ const machine = reactive({
   last_full_service: '',
   network_address: '',
   machine_status: '',
-  show_details: false
+  show_details: false,
+  show_create_post: false
 })
 
 async function getMachineStatus(id) {
@@ -46,6 +47,15 @@ function resetMachine() {
   machine.network_address = ''
   machine.machine_status = ''
   machine.show_details = false
+  machine.show_create_post = false
 }
 
-export default { setMachine, getMachine, resetMachine }
+function getShowCreatePost() {
+  return machine.show_create_post
+}
+
+function toggleShowCreatePost() {
+  machine.show_create_post = !machine.show_create_post
+}
+
+export default { setMachine, getMachine, resetMachine, getShowCreatePost, toggleShowCreatePost }

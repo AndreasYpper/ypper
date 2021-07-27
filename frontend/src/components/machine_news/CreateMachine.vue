@@ -120,7 +120,7 @@ export default {
     function createMachine() {
       if (validateForm()) {
         axios
-          .post(process.env.VUE_APP_API_URL + "machine", form)
+          .post(process.env.VUE_APP_API_URL + "machines", form)
           .then((response) => {
             if (response.data.name == form.name) {
               console.log(instance.parent.create_machine);
