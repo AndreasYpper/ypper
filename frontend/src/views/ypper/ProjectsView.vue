@@ -1,9 +1,9 @@
 <template>
   <div class="projects-container">
     <div class="nav-item">
-      <router-link :to="{ name: 'machine_news_home' }" class="link">
+      <div class="link">
         <img src="https://dl.dropboxusercontent.com/s/it0pkztvwiy99jk/maskinnytt.png?dl=0" alt="MaskinNytt" />
-      </router-link>
+      </div>
     </div>
   </div>
 </template>
