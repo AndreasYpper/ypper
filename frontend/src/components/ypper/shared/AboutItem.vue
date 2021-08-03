@@ -9,10 +9,10 @@
       <div class="content">
         <p>
           I am a hobby full stack developer who loves a challenge. My focus
-          right now is in Python, flask, and PostgreSQL for the backend
-          development and for the frontend my tools are Vue.js, HTML and CSS.
-          When deploying I have mainly used Nginx on Ubuntu. With this said, I'm
-          not afraid to learn new things.
+          right now is in Python, flask, and PostgreSQL for the backend and for
+          the frontend my tools are Vue.js, HTML and CSS. When deploying I have
+          mainly used Nginx on Ubuntu. With this said, I'm not afraid to learn
+          new things.
           <br />
           <br />
           My plan for this site is to learn more and share my projects.
