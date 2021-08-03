@@ -1,9 +1,12 @@
 <template>
   <div class="projects-container">
-    <div class="nav-item">
+    <!-- <div class="nav-item">
       <div class="link">
         <img src="https://dl.dropboxusercontent.com/s/it0pkztvwiy99jk/maskinnytt.png?dl=0" alt="MaskinNytt" />
       </div>
+    </div> -->
+    <div class="comming-soon">
+      <p>Comming soon...</p>
     </div>
   </div>
 </template>
@@ -42,5 +45,8 @@ export default {
 }
 .link img {
   width: 10vw;
+}
+.comming-soon {
+
 }
 </style>
