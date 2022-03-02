@@ -1,0 +1,118 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.App {
+  background-color: #2f4454;
+  color: whitesmoke;
+  min-height: 100vh;
+  text-align: center;
+}
+.navbar-container {
+  font-size: 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 1em;
+  align-items: center;
+  margin: 0px 15% 0px 15%;
+}
+.logo {
+  align-self: flex-start;
+  cursor: pointer;
+}
+.nav {
+  font-size: 0.8em;
+  cursor: pointer;
+  padding: 0.5em;
+  border-radius: 10px;
+  margin: 0px 20px 0px 20px;
+}
+.nav:hover {
+  background-color: #212f3a;
+}
+
+.content {
+  margin: 0px 10% 0px 10%;
+}
+
+.home-container {
+  
+}
+.heading {
+  width: 100%;
+  font-size: 2em;
+}
+.home-content {
+  display: flex;
+  flex-direction: row;
+  padding: 2em;
+}
+.text {
+  font-size: 1em;
+  text-align: left;
+}
+.profile-img {
+
+}
+.profile-img img {
+  border-radius: 50%;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  cursor: pointer;
+  margin: 30px;
+}
+.contact-links img {
+  width: 150px;
+}
+
+.about-container {
+
+}
+
+.text-block {
+  text-align: left;
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar-container {
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 1em;
+    align-items: center;
+    margin: auto;
+  }
+  .logo {
+    align-self: flex-start;
+    flex: 0 0 100%;
+  }
+  .nav {
+    font-size: 0.65em;
+    cursor: pointer;
+    padding: 0.5em;
+    border-radius: 5px;
+  }
+  .content {
+    margin: 0px 20px 0px 20px;
+  }
+  .home-content {
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    justify-content: center;
+    align-items: center;
+  }
+}
