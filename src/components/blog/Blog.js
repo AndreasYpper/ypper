@@ -6,9 +6,7 @@ export default function Blog() {
   const [blogs, setBlogs] = React.useState([]);
   React.useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URI}/blog`,{
-        headers: {'Access-Control-Allow-Credentials': true},
-      })
+      .get(`${process.env.REACT_APP_API_URI}/blog`)
       .then((resp) => {
         var data = resp.data;
         setBlogs([...data]);
