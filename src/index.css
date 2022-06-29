@@ -185,6 +185,25 @@ body {
   text-align: left;
 }
 
+.blog-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin: 20px;
+}
+
+.blog-card-container {
+  margin: 2rem;
+  padding: 1.5em;
+  border-radius: 15px;
+  background-color: rgb(184, 191, 199);
+  color: #212f3a;
+  cursor: pointer;
+  width: 75%;
+}
+
 @media only screen and (max-width: 600px) {
   .logo {
     grid-column: 3 / 11;
@@ -277,7 +296,8 @@ body {
     margin: 2rem;
     padding: 1.5em;
     border-radius: 30px;
-    background-color: #5d817d;
+    background-color: rgb(184, 191, 199);
+    color: #212f3a;
     cursor: pointer;
     width: 100%;
   }
