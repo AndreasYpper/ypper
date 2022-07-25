@@ -18,7 +18,7 @@ export default function BlogCard({ blog }) {
     <div className="blog-card-container" onClick={() => setShow(!show)}>
       <h1>{blog.title}</h1>
       <div style={{textAlign: 'left'}}>
-        <ReactMarkdown children={blogBody} remarkPlugins={[remarkGfm]}  />,
+        <ReactMarkdown children={blogBody} remarkPlugins={[remarkGfm]}  />
       </div>
       {/* <p style={{textAlign: 'left'}}>{blogBody}</p> */}
     </div>
