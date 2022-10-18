@@ -16,7 +16,7 @@ export default function Blog() {
       });
   }, []);
 
-  const blogList = blogs.sort((a, b) => a.id > b.id ? 1 : -1).map((blog) => <BlogCard blog={blog} key={blog.id} />);
+  const blogList = blogs.map((blog) => <BlogCard blog={blog} key={blog.id} />).reverse();
 
   return <div className="blog-container">{blogList}</div>;
 }
