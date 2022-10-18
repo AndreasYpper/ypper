@@ -16,7 +16,7 @@ export default function Blog() {
       });
   }, []);
 
-  const blogList = blogs.map((blog) => <BlogCard blog={blog} key={blog.id} />).reverse();
+  const blogList = blogs.reverse().map((blog) => <BlogCard blog={blog} key={blog.id} />);
 
   return <div className="blog-container">{blogList}</div>;
 }
